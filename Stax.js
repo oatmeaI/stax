@@ -6,6 +6,8 @@ class UIElement {
         this.content = content;
         this.children = [];
         this.config = params;
+        this.parent = null;
+        this.element = null;
         if (params && params.children) this.addContent(...params.children);
     }
 
@@ -16,10 +18,14 @@ class UIElement {
         this.children = [...this.children, ...children];
     }
 
+    createElement() {
+        if (this.element) return this.element;
+        throw new Error("createElement not defined for this Component.");
+    }
+
     render() {
         this.element = this.createElement();
         this.children.forEach((child) => child.render());
-        this.children.forEach((child) => child.configure());
         this.configure();
     }
 }
@@ -44,7 +50,7 @@ class Widget extends UIElement {
     }
 
     createElement() {
-        return new ListWidget();
+        return this.element || new ListWidget();
     }
 }
 
@@ -98,7 +104,7 @@ class Spacer extends UIElement {
     }
 
     createElement() {
-        return this.parent.element.addSpacer(this.config.size);
+        return this.element || this.parent.element.addSpacer(this.config.size);
     }
 }
 
@@ -116,7 +122,7 @@ class Text extends UIElement {
     }
 
     createElement() {
-        return this.parent.element.addText(this.content);
+        return this.element || this.parent.element.addText(this.content);
     }
 }
 
@@ -153,7 +159,7 @@ class Picture extends UIElement {
     }
 
     createElement() {
-        return this.parent.element.addImage(this.content);
+        return this.element || this.parent.element.addImage(this.content);
     }
 }
 
