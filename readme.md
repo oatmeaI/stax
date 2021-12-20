@@ -4,7 +4,7 @@ Stax is a (very thin) abstraction over Scriptable's built-in widget API. It aims
 
 ## Example
 
-Scriptable API (assume `font`, `mainImage`, etc, are defined above):
+**Here's a simple widget written with the raw Scriptable API (assume `font`, `mainImage`, etc, are defined above):**
 
 ```js
 const widget = new ListWidget();
@@ -31,7 +31,7 @@ Script.setWidget(widget);
 Script.complete();
 ```
 
-Here's the same widget written with Stax:
+**Here's the same widget written with Stax:**
 
 ```js
 const { Widget, HorizontalStack, VerticalStack, Spacer, Text, Picture } = importModule("Stax");
