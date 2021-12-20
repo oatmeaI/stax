@@ -45,7 +45,7 @@ class Widget extends UIElement {
 
     configure() {
         if (this.config.bgType === "gradient") this.element.backgroundGradient = this.config.bgGradient;
-        this.element.spacing = this.config.spacing;
+        this.element.spacing = this.config.spacing || 0;
         Script.setWidget(this.element);
     }
 
