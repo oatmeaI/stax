@@ -1,6 +1,6 @@
-# XXX: A Widget Library for Scriptable
+# Stax: A Widget Library for Scriptable
 
-XXX is a (very thin) abstraction over Scriptable's built-in widget API. It aims to provide a more declarative API, and allows you to create reusable components.
+Stax is a (very thin) abstraction over Scriptable's built-in widget API. It aims to provide a more declarative API, and allows you to create reusable components.
 
 ## Example
 
@@ -31,10 +31,10 @@ Script.setWidget(widget);
 Script.complete();
 ```
 
-Here's the same widget written with XXX:
+Here's the same widget written with Stax:
 
 ```js
-const { Widget, HorizontalStack, VerticalStack, Spacer, Text, Picture } = importModule("XXX");
+const { Widget, HorizontalStack, VerticalStack, Spacer, Text, Picture } = importModule("Stax");
 
 const title = HorizontalStack({}, [
     Spacer(),
@@ -54,17 +54,17 @@ Script.complete();
 
 ## Installation
 
-Add `XXX.js` to your Scriptable library, and then just import what you need:
+Add `Stax.js` to your Scriptable library, and then just import what you need:
 
 ```js
-const { Widget, HorizontalStack, Picture } = importModule("XXX");
+const { Widget, HorizontalStack, Picture } = importModule("Stax");
 ```
 
 ## Usage
 
 ## API
 
-XXX exposes a number of constructors for various types of Widget elements. In general, the arguments for containers (Stacks, Widgets) are `(params, children)`, while for content elements (Text, Picture, etc) it's `(content, params)`. Generally, all keys in `params` are optional, unless otherwise specified.
+Stax exposes a number of constructors for various types of Widget elements. In general, the arguments for containers (Stacks, Widgets) are `(params, children)`, while for content elements (Text, Picture, etc) it's `(content, params)`. Generally, all keys in `params` are optional, unless otherwise specified.
 
 | Function | Notes |
 | `Widget({bgType: 'gradient', bgGradient: new LinearGradient(), spacing: 2}, [...children])` | Currently only gradient backgrounds are supported. If `bgType` is `"gradient"`, `bgGradient` must be present and must be a Scriptable `LinearGradient` object. `Widget.render()` will render the entire content tree, and call `Script.setWidget` with itself as an argument. |
@@ -75,7 +75,7 @@ XXX exposes a number of constructors for various types of Widget elements. In ge
 | `Text(content, { font: new Font(), color: new Color(), align: "left" | "center" | "right" })` | Creates a line of text with `content`. If present, `font` must be a Scriptable `Font` object. Likewise, if present, `color` must be a Scriptable `Color` object. |
 | `Picture(content, { align: "left" | "center" | "right", mode: "fit" | "fill" })` | Creates a picture with `content`. |
 
-One nice thing about the thinness of XXX, is that it's not hard to reach in to the Scriptable API if you need to for some reason. All XXX components have an `element` property that references the underlying Scriptable object:
+One nice thing about the thinness of Stax, is that it's not hard to reach in to the Scriptable API if you need to for some reason. All Stax components have an `element` property that references the underlying Scriptable object:
 
 ```js
 const title = Text("This is a title", {});
@@ -83,9 +83,9 @@ title.createElement(); // Note that you must call this method first; usually the
 title.element.textOpacity = 0.5;
 ```
 
-This is mostly useful for access properties that haven't been implemented by XXX yet, like above.
+This is mostly useful for access properties that haven't been implemented by Stax yet, like above.
 
-XXX exposes a single class, `Component` that can be used to create your own reusable components, like so:
+Stax exposes a single class, `Component` that can be used to create your own reusable components, like so:
 
 ```js
 class Title extends Component {
@@ -103,7 +103,7 @@ class Title extends Component {
 const title = new Title("This is a title", { font: new Font() });
 ```
 
-XXX also exposes a single utility function, `wrapComponent` which can be used to allow you to omit the `new` keyword on custom components:
+Stax also exposes a single utility function, `wrapComponent` which can be used to allow you to omit the `new` keyword on custom components:
 
 ```js
 const Title = wrapComponent(
@@ -123,4 +123,6 @@ const Title = wrapComponent(
 const title = Title("This is a title", { font: new Font() });
 ```
 
-That's it! The library is under "active" development, in that I add features as I encounter a need for them :sweat-smile: - so as you'll notice, there is plenty of the built in widget API that is not implemented yet. Feel free to add stuff and submit PRs!
+That's it! The library is under "active" development, in that I add features as I encounter a need for them :sweat-smile: - so as you'll notice, there is plenty of the built in widget API that is not implemented yet. (This project was originally started at around 2am while I was working on a custom widget and was wishing there was a cleaner way to lay them out).
+
+Feel free to add stuff and submit PRs!
