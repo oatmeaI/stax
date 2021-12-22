@@ -62,6 +62,8 @@ Add `Stax.js` to your Scriptable library, and then just import what you need:
 const { Widget, HorizontalStack, Picture } = importModule("Stax");
 ```
 
+If you store your Scriptable scripts in iCloud, you can clone this repo and run `./install.sh`, which will try to copy `Stax.js` to the Scriptable folder in your iCloud drive. You might need to edit `install.sh` if your Scriptable directory is different from mine.
+
 ## API
 
 Stax exposes a number of constructors for various types of Widget elements.
