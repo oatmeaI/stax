@@ -26,13 +26,18 @@ class UIElement {
     render() {
         this.element = this.createElement();
         this.children.forEach((child) => child.render());
+
         this.configure();
     }
 }
 
 class Component extends UIElement {
+    build() {
+        throw new Error('build() should return a UIElement')
+    }
+
     createElement() {
-        const element = this.render();
+        const element = this.build();
         this.parent.addContent(element);
         element.render();
     }
@@ -44,8 +49,10 @@ class Widget extends UIElement {
     }
 
     configure() {
-        if (this.config.bgType === "gradient") this.element.backgroundGradient = this.config.bgGradient;
-        this.element.spacing = this.config.spacing || 0;
+        const { bgImage, spacing, bgGradient } = this.config;
+        if (bgGradient) this.element.backgroundGradient = bgGradient;
+        if (bgImage) this.element.backgroundImage = bgImage;
+        this.element.spacing = spacing || 0;
         Script.setWidget(this.element);
     }
 

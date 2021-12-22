@@ -1,0 +1,1 @@
+cp ./Stax.js "${HOME}/Library/Mobile Documents/iCloud~dk~simonbs~Scriptable/Documents/Stax.js"
