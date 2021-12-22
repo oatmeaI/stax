@@ -41,14 +41,21 @@ Script.complete();
 const { Widget, HorizontalStack, VerticalStack, Spacer, Text, Picture } = importModule("Stax");
 
 const title = HorizontalStack({}, [
+    //
     Spacer(),
     Text("A Really Cool Widget!", { font: font, color: fontColor, align: "center" }),
     Spacer(),
 ]);
 
-const content = VerticalStack({}, [Picture(mainImage, { align: "center" })]);
+const content = VerticalStack({}, [
+    //
+    Picture(mainImage, { align: "center" }),
+]);
 
-const widget = new Widget({ spacing: 2 }, [VerticalStack({}, [title, content])]);
+const widget = new Widget({ spacing: 2 }, [
+    //
+    VerticalStack({}, [title, content]),
+]);
 
 widget.render();
 Script.complete();
@@ -100,7 +107,11 @@ class Title extends Component {
     build() {
         const { font } = this.params;
 
-        return HorizontalStack({}, [Spacer({ size: 5 }), Text(this.content, { font })]);
+        return HorizontalStack({}, [
+            //
+            Spacer({ size: 5 }),
+            Text(this.content, { font }),
+        ]);
     }
 }
 
@@ -134,7 +145,11 @@ const Title = wrapComponent(
         render() {
             const { font } = this.params;
 
-            return HorizontalStack({}, [Spacer({ size: 5 }), Text(this.content, { font })]);
+            return HorizontalStack({}, [
+                //
+                Spacer({ size: 5 }),
+                Text(this.content, { font }),
+            ]);
         }
     }
 );
@@ -171,7 +186,12 @@ This means that the whole UI is represented by a tree of `UIElement` objects rel
 For example:
 
 ```js
-const widget = new Widget({}, [HorizontalStack({}, [Text("Widget!", {})])]);
+const widget = new Widget({}, [
+    HorizontalStack({}, [
+        //
+        Text("Widget!", {}),
+    ]),
+]);
 
 // Nothing exists at this point except three UIElements - a Widget, a HorizontalStack and a Text.
 // The Text's `parent` is the HorizontalStack, and the HorizontalStack's `parent` is the Widget.
@@ -217,3 +237,7 @@ This is mostly useful for access properties that haven't been implemented by Sta
 That's it! The library is under "active" development, in that I add features as I encounter a need for them 😅 - so as you'll notice, there is plenty of the built in widget API that is not implemented yet. (This project was originally started at around 2am while I was working on a custom widget and was wishing there was a cleaner way to lay them out).
 
 Feel free to add stuff and submit PRs!
+
+### What's with all those empty comments in the example code?
+
+I use [Prettier](https://prettier.io/) to format my code. I think Prettier is great, but it won't let me keep my arrays on multiple lines if they'll fit on one. I think these layouts are a lot easier to read if they're split into multiple lines though. The empty comment at the top of the array tricks Prettier into keeping them on multiple lines. Yeah, I could use a different formatter, or no formatter at all, or just cope with the arrays being inline...but this is just the way that works best for me.

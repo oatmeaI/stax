@@ -33,7 +33,7 @@ class UIElement {
 
 class Component extends UIElement {
     build() {
-        throw new Error('build() should return a UIElement')
+        throw new Error("build() should return a UIElement");
     }
 
     createElement() {
