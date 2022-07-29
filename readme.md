@@ -52,7 +52,7 @@ const content = VerticalStack({}, [
     Picture(mainImage, { align: "center" }),
 ]);
 
-const widget = new Widget({ spacing: 2 }, [
+const widget = Widget({ spacing: 2 }, [
     //
     VerticalStack({}, [title, content]),
 ]);
@@ -186,7 +186,7 @@ This means that the whole UI is represented by a tree of `UIElement` objects rel
 For example:
 
 ```js
-const widget = new Widget({}, [
+const widget = Widget({}, [
     HorizontalStack({}, [
         //
         Text("Widget!", {}),
